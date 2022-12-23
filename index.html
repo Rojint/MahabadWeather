@@ -15,24 +15,28 @@
       src="https://kit.fontawesome.com/5f0d94f57e.js"
       crossorigin="anonymous"
     ></script>
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
     <title>Weather</title>
   </head>
   <body>
     <div class="citycontainer">
-      <h2>Mahabad</h2>
+      <h2 id="city-name">Mahabad</h2>
 
-      <h2 class="left">11:11 AM</h2>
       <br />
-      <h2>&nbsp; &nbsp;Iran</h2>
+      <h2 id="city-status">Rainy</h2>
       <br />
       <br />
 
       <i class="fa-solid fa-cloud-rain"></i>
       <br />
       <br />
-      <h3>6°C</h3>
-      <h3>rainy</h3>
+      <h3 id="convert">6°C</h3>
+      <div class="convert-temp">
+        <a id="convert-link-c" href="#">°C</a>
+        |
+        <a id="convert-link-f" href="#">°F</a>
+      </div>
 
       <hr />
 
@@ -128,21 +132,30 @@
           />
         </div>
 
-        <p class="recent-location">Recent Locations: Tehran, Tabriz, Mashhad</p>
-        <p class="date">
+        <p class="recent-location" id="location">
+          Recent Locations: Tehran, Tabriz, Mashhad
+        </p>
+        <p class="date" id="date">
           <strong> December 2022 </strong>
           <br />
           Sunday, Dec 4, 2022
         </p>
         <div class="search-btn-container">
-          <input type="search" placeholder="🔍Search location here" />
-          <button
-            type="button"
-            class="btn btn-dark"
-            style="background-color: #596aca !important; border: none"
-          >
-            Search
-          </button>
+          <form id="search-form">
+            <input
+              type="text"
+              id="search-box"
+              placeholder="🔍Search location here"
+            />
+            <button
+              type="submit"
+              id="search-btn"
+              class="btn btn-dark"
+              style="background-color: #596aca !important; border: none"
+            >
+              Search
+            </button>
+          </form>
         </div>
 
         <div class="overview-container">
@@ -236,5 +249,6 @@
         </div>
       </div>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>
