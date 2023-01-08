@@ -31,22 +31,37 @@ let day = dayNames[now.getDay()];
 let year = now.getFullYear();
 let hour = now.getHours();
 let minute = now.getMinutes();
+let dayNumber = now.getDate();
 let time = now.toString().substr(16, 5);
 
-let currentDate = `${day}, ${monthNames} ${monthNumbers}, ${time}`;
+let currentDate = `${day}, ${monthNames} ${dayNumber}, ${time}`;
 console.log(currentDate);
 
 let dateBox = document.querySelector("#date");
 dateBox.innerHTML = currentDate;
 
-let apiKey = "ac209dae1f283fb332a5bb7f50b0f468";
+let apiKey = "0f0a1fdebac7341b2c3o08605ff7bt89";
 let searchInput = document.querySelector("#search-box");
 let locationTitle = document.querySelector("#location");
+let iconElement = document.querySelector("#icon_element");
+let weatherDescription = document.querySelector("#weather-description");
+let windElement = document.querySelector("#wind");
+let pressureElement = document.querySelector("#pressure");
+let humidityElement = document.querySelector("#humidity");
 
 function showTemp(response) {
+  console.log(response);
   let tempPlaceHolder = document.querySelector("#convert");
   if (response !== undefined) {
-    tempPlaceHolder.innerHTML = response.data.main.temp;
+    tempPlaceHolder.innerHTML = Math.round(response.data.temperature.current);
+    iconElement.setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
+    weatherDescription.innerHTML = response.data.condition.description;
+    windElement.innerHTML = `${response.data.wind.speed}Km/h`;
+    pressureElement.innerHTML = `${response.data.temperature.pressure}hpa`;
+    humidityElement.innerHTML = response.data.temperature.humidity;
     locationTitle.innerHTML = ``;
   }
 }
@@ -63,7 +78,7 @@ function search(event) {
   if (searchInput.value) {
     locationTitle.innerHTML = `Searching for ${searchInput.value}...`;
     let city = searchInput.value;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
     axios.get(apiUrl).then((response) => showTemp(response));
 

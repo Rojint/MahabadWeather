@@ -36,10 +36,9 @@ h2 {
   margin-left: 15px;
 }
 
-i {
+.iconplaceholder {
   font-size: 25px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
   margin-left: 30px;
 }
 
@@ -48,7 +47,7 @@ h3 {
   width: 50%;
   font-size: 32px;
   margin-left: 30px;
-  /* text-align: right; */
+
 }
 
 .convert-temp {
@@ -66,6 +65,10 @@ h3 {
   font-weight: 400;
 }
 
+.sun {
+  margin-top: 70px;
+}
+
 .sunrise-container {
   margin-top: 20px;
   border: 2px solid #596aca;
@@ -74,6 +77,7 @@ h3 {
   margin-right: 25px;
   border-radius: 8px;
 }
+
 .sunrise-img {
   width: 45px;
   padding: 5px;
@@ -87,6 +91,7 @@ h3 {
   margin-right: 25px;
   border-radius: 8px;
 }
+
 .sunset-img {
   width: 47px;
   padding: 5px;
