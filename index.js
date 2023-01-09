@@ -58,6 +58,7 @@ function showTemp(response) {
       "src",
       `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
     );
+    celsiusTemp = response.data.temperature.current;
     weatherDescription.innerHTML = response.data.condition.description;
     windElement.innerHTML = `${response.data.wind.speed}Km/h`;
     pressureElement.innerHTML = `${response.data.temperature.pressure}hpa`;
@@ -89,25 +90,29 @@ function search(event) {
   }
 }
 
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheiTemp = (celsiusTemp * 9) / 5 + 32;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperatureElement = document.querySelector("#convert");
+  temperatureElement.innerHTML = Math.round(fahrenheiTemp);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#convert");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusTemp = null;
 let searchBox = document.querySelector("#search-form");
 searchBox.addEventListener("submit", search);
 
-//3
+let fahrenheitLink = document.querySelector("#convert-link-f");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 
-// function convertToF(event) {
-//   event.preventDefault();
-//   let convertBox = document.getElementById("#convert").value;
-//   // cTemp = convertBox.value;
-//   console.log(convertBox);
-//   // convertBox.innerHTML = `( ${re} * 9) / 5 + 32 °F`;
-// }
-// let convertLink = document.querySelector("#convert-link-f");
-// convertLink.addEventListener("click", convertToF);
-
-// function convertToC(event) {
-//   event.preventDefault();
-//   let convertBox = document.querySelector("#convert");
-//   convertBox.innerHTML = `6°C`;
-// }
-// let convertLink2 = document.querySelector("#convert-link-c");
-// convertLink2.addEventListener("click", convertToC);
+let celsiusLink = document.querySelector("#convert-link-c");
+celsiusLink.addEventListener("click", showCelsiusTemp);

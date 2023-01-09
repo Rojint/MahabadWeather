@@ -52,7 +52,8 @@ h3 {
 
 .convert-temp {
   display: inline;
-  margin-left: 160px;
+  margin-left: 140px;
+  width: 50%;
   font-size: 24px;
 }
 
@@ -223,4 +224,18 @@ strong {
 
 .convert {
   display: inline;
+}
+
+.convert-temp .active {
+  color: black;
+  cursor: default;
+}
+
+.convert-temp .active:hover {
+  text-decoration: none;
+}
+
+footer {
+  justify-content: center;
+  margin-left: 20px;
 }
